@@ -39,11 +39,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
 
             //Assert
             Assert.IsTrue(target.Pacientes.Count() > 0);
-
-
         }
-
-
 
 
         [TestMethod]
@@ -77,8 +73,6 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
 
             //Assert
             Assert.AreEqual(expected, actual);
-
-
         }
     }
 }

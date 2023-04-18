@@ -172,8 +172,6 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         {
             var pacientes_adolescentes = Pacientes.Where(x => (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) < 12).ToList();
 
-
-
             double porcentaje_pacientes_adolescentes = Calcular_porcentaje(Pacientes, pacientes_adolescentes);
 
             return porcentaje_pacientes_adolescentes;
