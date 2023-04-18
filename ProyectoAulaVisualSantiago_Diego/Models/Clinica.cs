@@ -146,8 +146,8 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
             DateTime fecha_actual = DateTime.Now.Date;
 
             List<double> ListaRangosEdad = new List<double>();
-
-            double porcentaje_niños          = Clinica.Porcentaje_niños(Pacientes,fecha_actual);
+            
+            double porcentaje_niños           = Clinica.Porcentaje_niños(Pacientes,fecha_actual);
             double porcentaje_adolescentes    = Clinica.Porcentaje_adolescentes(Pacientes, fecha_actual);
             double porcentaje_joven           = Clinica.Porcentaje_jovenes(Pacientes, fecha_actual);
             double porcentaje_adultos         = Clinica.Porcentaje_adultos(Pacientes, fecha_actual);
@@ -308,19 +308,6 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
 
         //-------------------------------------------------------------------------------------------------------------
 
-
-        private static double Calcular_promedio(List<int> lista_costos)
-        {
-            double total = 0;
-            for (int i = 0; i < lista_costos.Count(); i++)
-            {
-                total += lista_costos[i];
-            }
-            if (lista_costos.Count() > 0) { return total / lista_costos.Count(); }
-            else { return 0; }
-
-
-        }
         public static int Total_pacientes_con_cancer(List<Paciente> Pacientes)
         {
             int total_pacientes_con_cancer;
@@ -374,5 +361,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
             }
 
         }
+  
+        
     }
 }
