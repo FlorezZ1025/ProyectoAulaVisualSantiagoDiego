@@ -1,0 +1,72 @@
+﻿@model ProyectoAulaVisualSantiago_Diego.Models.Paciente
+@{
+    ViewBag.Title = "Paciente registrado :)";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <title>Persona</title>
+    <link rel="stylesheet" href="~/Content/sapo.css" />
+</head>
+<body>
+    <div>
+        <h3>DATOS PERSONALES</h3>
+        <form action="Persona/Persona" method="post">
+            <table>
+                <tr>
+                    <td><label>Identificación    </label></td>
+                    <td><label> @Model.Id        </label></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre       </label></td>
+                    <td><label> @Model.Nombre</label></td>
+                </tr>
+                <tr>
+                    <td><label>Apeliidos                          </label></td>
+                    <td><label> @Model.Apellido_1 @Model.Apellido_2</label></td>
+
+                </tr>
+                <tr>
+                    <td><label>Fecha de nacimiento                   </label></td>
+                    <td><label> @Model.Fechas.Fecha_de_nacimiento.ToShortDateString()</label></td>
+                </tr>
+                <tr>
+                    <td><label>EPS                 </label></td>
+                    <td><label> @Model.Historial.Eps</label></td>
+                </tr>
+                
+                <tr>
+                    <td><label>Meses en la EPS            </label></td>
+                    <td><label> @Model.Fechas.Tiempo_en_eps</label></td>
+                </tr>
+                <tr>
+                    <td><label>Historia clínica                 </label></td>
+                    <td><label> @Model.Historial.Historia_clínica</label></td>
+                </tr>
+              
+                <tr>
+                    <td><label>Cantidad de enfermedades             </label></td>
+                    <td><label>@Model.Historial.Cantidad_Enfermedades</label></td>
+                </tr>
+                <tr>
+                    <td><label>Enfermedad mas relevante            </label></td>
+                    <td><label>@Model.Historial.Enfermedad_relevante</label></td>
+                </tr>
+                <tr>
+                    <td><label>Tipo de afiliacion      </label></td>
+                    <td><label>@Model.Trabajo.Afiliacion</label></td>
+                </tr>
+                <tr>
+                    <td><label> Tipo de regimen          </label></td>
+                    <td><label>@Model.Trabajo.Tipo_de_regimen</label></td>
+                </tr>
+                <tr>
+                    <td><label>Costo de tratamiento           </label></td>
+                    <td><label>$@Model.Trabajo.Costo_Tratamiento</label></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

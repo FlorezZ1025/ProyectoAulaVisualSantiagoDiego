@@ -1,0 +1,132 @@
+﻿@model ProyectoAulaVisualSantiago_Diego.Models.Paciente
+@{
+    ViewBag.Title = "Ingresar Informacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <title>Seleccionar Eps</title>
+    <link rel="stylesheet" href="~/Content/sapo.css" />
+
+</head>
+<body>
+    <div>
+        <h3>Cambiar EPS: </h3>
+
+        @using (Html.BeginForm("MostrarCambioEps", "Home", FormMethod.Post))
+        {
+            <form action="Paciente/Paciente" method="post">
+                <table>
+                    <tr>
+
+                        <td>
+                            <label for="Eps">Tipo de EPS </label>
+                        </td>
+                        <td>
+                            <select name="Eps" id="eps">
+                                <option value="Sura">Sura</option>
+                                <option value="Nueva Eps">Nueva Eps</option>
+                                <option value="Salud Total">Salud Total</option>
+                                <option value="Sanitas">Sanitas</option>
+                                <option value="Savia">Savia</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="Cambiar" value="Cambiar" /></td>
+                        
+                    </tr>
+
+                </table>
+            </form>
+        }
+
+    </div>
+    <div>
+        <h3>Cambiar regimen: </h3>
+
+        @using (Html.BeginForm("MostrarCambioRegimen", "Home", FormMethod.Post))
+        {
+            <form action="Paciente/Paciente" method="post">
+                <table>
+                    <tr>
+
+                        <td>
+                            <label for="Regimen">Tipo de regimen </label>
+                        </td>
+                        <td>
+                            <select name="regimen" id="eps">
+                                <option value="Contributivo">Contributivo</option>
+                                <option value="Subsidiado">Subsidiado</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="Cambiar" value="Cambiar" /></td>
+                    </tr>
+
+                </table>
+            </form>
+        }
+
+    </div>
+    <div>
+        <h3>Cambiar costo </h3>
+        @using (Html.BeginForm("MostrarCambioCosto", "Home", FormMethod.Post))
+        {
+            <form action="Paciente/Paciente" method="post">
+                <table>
+                    <tr>
+                        <td><label>Ingrese el valor </label></td>
+                        <td><input type="text" name="cambiarcosto" pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="Cambiar Costo" value="Cambiar " /></td>
+
+
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+        }
+    </div>
+    <div>
+        <h3>Cambiar Enfermedad relevante </h3>
+        @using (Html.BeginForm("MostrarCambioEnfermedad", "Home", FormMethod.Post))
+        {
+            <form action="Paciente/Paciente" method="post">
+                <table>
+                    <tr>
+                        <td><label>Ingrese su nueva enfermedad mas relevante </label></td>
+                        <td><input type="text" name="e_relevante" pattern="[a-zA-Z.,:;()¿?¡! ]+" autocomplete="off" required /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="Cambiar er" value="Cambiar " /></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+        }
+    </div>
+    <div>
+        <h3>Cambiar Historia Clinica </h3>
+        @using (Html.BeginForm("MostrarCambioHistoria", "Home", FormMethod.Post))
+        {
+            <form action="Paciente/Paciente" method="post">
+                <table>
+                    <tr>
+                        <td><label>Ingrese su nueva historia clínica </label></td>
+                        <td><input type="text" name="historia" pattern="[a-zA-Z.,:;()¿?¡! ]+" autocomplete="off" required /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="Cambiar historia" value="Cambiar " /></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+        }
+    </div>
+
+</body>
+</html>
+

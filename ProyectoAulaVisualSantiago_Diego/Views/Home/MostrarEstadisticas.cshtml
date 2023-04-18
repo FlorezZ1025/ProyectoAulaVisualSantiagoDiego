@@ -1,0 +1,129 @@
+﻿@model ProyectoAulaVisualSantiago_Diego.Models.Estadistica
+
+@{
+    ViewBag.Title = "Estadisticas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="~/Content/sapo.css" />
+</head>
+<body>
+
+    <h3>Estadisticas</h3>
+    <div>
+        <h4>Porcentaje de costos por EPS</h4>
+        <table>
+            <tr>
+                <td><label>Sura</label></td>
+                <td><label>%@Model.porcentajeCostosEps[0]</label></td>
+            </tr>
+            <tr>
+                <td><label>Nueva Eps</label></td>
+                <td><label>%@Model.porcentajeCostosEps[1]</label></td>
+            </tr>
+            <tr>
+                <td><label>Salud Total</label></td>
+                <td><label>%@Model.porcentajeCostosEps[2]</label></td>
+            </tr>
+            <tr>
+                <td><label>Sanitas</label></td>
+                <td><label>%@Model.porcentajeCostosEps[3]</label></td>
+            </tr>
+            <tr>
+                <td><label>Savia</label></td>
+                <td><label>%@Model.porcentajeCostosEps[4]</label></td>
+            </tr>
+        </table>
+
+        <h4>Total de costos por EPS</h4>
+        <table>
+            <tr>
+                <td><label>Sura</label></td>
+                <td><label>$@Model.totalCostosEps[0]</label></td>
+            </tr>
+            <tr>
+                <td><label>Nueva Eps</label></td>
+                <td><label>$@Model.totalCostosEps[1]</label></td>
+            </tr>
+            <tr>
+                <td><label>Salud Total</label></td>
+                <td><label>$@Model.totalCostosEps[2]</label></td>
+            </tr>
+            <tr>
+                <td><label>Sanitas</label></td>
+                <td><label>$@Model.totalCostosEps[3]</label></td>
+            </tr>
+            <tr>
+                <td><label>Savia</label></td>
+                <td><label>$@Model.totalCostosEps[4]</label></td>
+            </tr>
+        </table>
+
+        <h4>Porcentaje de pacientes sin enfermedades</h4>
+        <table>
+            <tr>
+                <td>%@Model.pacientesNoEnfermos</td>
+            </tr>
+        </table>
+
+        <h4>Paciente con mayor costo en tratamientos</h4>
+        <table>
+            <tr>
+                <td>@Model.pacienteMayorcosto.Id</td>
+                <td>@Model.pacienteMayorcosto.Nombre @Model.pacienteMayorcosto.Apellido_1 @Model.pacienteMayorcosto.Apellido_2</td>
+            </tr>
+        </table>
+
+        <h4>Porcentaje de Rango de edad</h4>
+        <table>
+            <tr>
+                <td><label>Niños</label></td>
+                <td><label>%@Model.porcentajesRangoEdad[0]</label></td>
+            </tr>
+            <tr>
+                <td><label>Adolescentes</label></td>
+                <td><label>%@Model.porcentajesRangoEdad[1]</label></td>
+            </tr>
+            <tr>
+                <td><label>Jovenes</label></td>
+                <td><label>%@Model.porcentajesRangoEdad[2]</label></td>
+            </tr>
+            <tr>
+                <td><label>Adultos</label></td>
+                <td><label>%@Model.porcentajesRangoEdad[3]</label></td>
+            </tr>
+            <tr>
+                <td><label>Adultos mayores</label></td>
+                <td><label>%@Model.porcentajesRangoEdad[4]</label></td>
+            </tr>
+            <tr>
+                <td><label>Ancianos</label></td>
+                <td><label>%@Model.porcentajesRangoEdad[5]</label></td>
+            </tr>
+
+        </table>
+
+        <h4>Porcentajes de pacientes por régimen</h4>
+        <table>
+            <tr>
+                <td><label>Contributivo</label></td>
+                <td><label>%@Model.porcentajesRegimen[0]</label></td>
+            </tr>
+            <tr>
+                <td><label>Subsidiado</label></td>
+                <td><label>%@Model.porcentajesRegimen[1]</label></td>
+            </tr>
+        </table>
+
+        <h4>Pacientes con cancer como enfermedad mas relevante</h4>
+        <table>
+            <tr>
+                <td><label>@Model.pacientesCancer</label></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <title>Registrar Paciente</title>
+        <link rel="stylesheet" href="~/Content/sapo.css" />
+</head>
+<body>
+    <div>
+        <h3>DATOS PERSONALES</h3>
+
+
+        @using (Html.BeginForm("MostrarPacienteRegistrado", "Home", FormMethod.Post))
+            {
+                <form action="Paciente/Paciente" method="post">
+                    <table>
+                        <tr>
+                            <td><label>Identificación:</label></td>
+                            <td><input type="text" name="id" pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="12" autocomplete="off" value=""  /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Nombre: </label></td>
+                            <td><input type="text" name="nombre" pattern="[a-zA-Z.,:;()¿?¡! ñ]+" autocomplete="off" required  /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Primer Apellido:</label></td>
+                            <td><input type="text" name="apellido_1" pattern="[a-zA-Z.,:;()¿?¡!ñ ]+" autocomplete="off" required  /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Segundo Apellido:</label></td>
+                            <td><input type="text" name="apellido_2" pattern="[a-zA-Z.,:;()¿?¡!ñ ]+" autocomplete="off" required  /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Fecha nacimiento:</label></td>
+                            <td><input type="date" name="fhNacimiento" value=" " style=" width: 300px;"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="Regimen">Tipo de Régimen: </label>
+                            </td>
+                            <td>
+                                <select name="regimen" id="regimen" style=" width: 300px;">
+                                    <option value="Contributivo">Contributivo</option>
+                                    <option value="Subsidiado">Subsidiado</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="Eps">Tipo de EPS: </label>
+                            </td>
+                            <td>
+                                 <select name="Eps" id="Eps" style=" width: 300px;">
+                                     <option value="Sura">Sura</option>
+                                     <option value="Nueva Eps">Nueva Eps</option>
+                                     <option value="Salud Total">Salud Total</option>
+                                     <option value="Sanitas">Sanitas</option>
+                                     <option value="Savia">Savia</option>
+                                 </select>
+                             </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="Eps">Tipo de Afiliación: </label>
+                            </td>
+                            <td>
+                                <select name="afiliacion" id="sura" style=" width: 300px;">
+                                    <option value="Beneficiario">Beneficiario</option>
+                                    <option value="Cotizante">Cotizante</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Tiempo en Eps (meses): </label></td>
+                            <td><input type="text" name="tiempo_en_eps" pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g,'');" autocomplete="off" required   /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Ingrese historia clínica:</label></td>
+                            <td><input type="text" name="historia_clinica" pattern="[a-zA-Z.,:;()¿?¡!ñ ]+" autocomplete="off" required  /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Cantidad de enfermedades:</label></td>
+                             <td><input type="text" name="cantidad_Enfermedades" pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="9" autocomplete="off" required/></td>
+                        </tr>
+                        <tr>
+                            <td><label>Enfermedad más relevante:</label></td>
+                            <td><input type="text" name="Enfermedad_relevante"pattern="[a-zA-Z.,:;()¿?¡! ]+" autocomplete="off" required  /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Costo de tratamiento:</label></td>
+                            <td><input type="text" name="costo_Tratamiento" pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="10" autocomplete="off" required  /></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" name="Guardar" value="Guardar" /></td>
+                        </tr>
+
+                    </table>
+                </form>
+            }
+        
+    </div>
+</body>
+</html>

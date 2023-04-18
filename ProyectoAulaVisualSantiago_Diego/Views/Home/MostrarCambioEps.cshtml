@@ -1,0 +1,31 @@
+﻿@model ProyectoAulaVisualSantiago_Diego.Models.Paciente
+@{
+    ViewBag.Title = "Cambio de eps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<html>
+<head>
+    <title>Persona</title>
+    <link rel="stylesheet" href="~/Content/sapo.css" />
+</head>
+<body>
+    <div>
+        <h3>CAMBIO EPS </h3>
+        <form action="Persona/Persona" method="post">
+            <table>
+
+                <tr>
+                    <td><label>SU CAMBIO HA SIDO EXITOSO</label></td>
+                </tr>
+                <tr>
+                    <td><label>Su eps ha cambiado a @Model.Historial.Eps </label></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+

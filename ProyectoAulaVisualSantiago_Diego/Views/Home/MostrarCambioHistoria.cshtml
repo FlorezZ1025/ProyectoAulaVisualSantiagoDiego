@@ -1,0 +1,30 @@
+﻿@model ProyectoAulaVisualSantiago_Diego.Models.Paciente
+@{
+    ViewBag.Title = "Cambio de historia clinica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<html>
+<head>
+    <title>Persona</title>
+    <link rel="stylesheet" href="~/Content/sapo.css" />
+</head>
+<body>
+    <div>
+        <h3>Cambio </h3>
+        <form action="Persona/Persona" method="post">
+            <table>
+
+                <tr>
+                    <td><label>SU CAMBIO HA SIDO EXITOSO</label></td>
+                </tr>
+                <tr>
+                    <td><label>Su nueva historia clinica es: @Model.Historial.Historia_clínica </label></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>

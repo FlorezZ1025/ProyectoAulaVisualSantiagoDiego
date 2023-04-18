@@ -1,0 +1,30 @@
+﻿@model ProyectoAulaVisualSantiago_Diego.Models.Paciente
+@{
+    ViewBag.Title = "Cambio de costo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<html>
+<head>
+    <title>Cambio </title>
+    <link rel="stylesheet" href="~/Content/sapo.css" />
+</head>
+<body>
+    <div>
+        <h3>;) </h3>
+        <form action="Persona/Persona" method="post">
+            <table>
+
+                <tr>
+                    <td><label>SU CAMBIO HA SIDO EXITOSO</label></td>
+                </tr>
+                <tr>
+                    <td><label>El nuevo costo de su tratamiento es de $@Model.Trabajo.Costo_Tratamiento </label></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</body>
+</html>
