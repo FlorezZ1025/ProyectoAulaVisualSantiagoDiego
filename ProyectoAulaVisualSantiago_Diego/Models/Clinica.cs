@@ -55,13 +55,14 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         {
             paciente.Historial.Enfermedad_relevante = e_relevante;
         }
+
         public static List<double> Porcentaje_costos(List<Paciente> Lista_de_pacientes)
         {
-            List<double> Costos_Sura = new List<double>();
-            List<double> Costos_NuevaEPS = new List<double>();
+            List<double> Costos_Sura       = new List<double>();
+            List<double> Costos_NuevaEPS   = new List<double>();
             List<double> Costos_SaludTotal = new List<double>();
-            List<double> Costos_Sanitas = new List<double>();
-            List<double> Costos_Savia = new List<double>();
+            List<double> Costos_Sanitas    = new List<double>();
+            List<double> Costos_Savia      = new List<double>();
             List<double> lista_porcentajes = new List<double>();
 
             double porcentaje_Sura       = 0;
@@ -341,8 +342,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
             catch(DivideByZeroException) {
                 porcentaje = 0;
             }
-            return porcentaje;
-        
+            return porcentaje; 
         }
         private static double Calcular_porcentaje_costos(List<Paciente> pacientes, List<double> costos, double costo_total)
         {

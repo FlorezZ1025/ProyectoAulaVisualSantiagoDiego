@@ -72,6 +72,11 @@
         <h4>Paciente con mayor costo en tratamientos</h4>
         <table>
             <tr>
+                <td>Identificación</td>
+                <td>Nombre</td>
+                <td>Costo de tratamiento</td>
+            </tr>
+            <tr>
                 <td>@Model.pacienteMayorcosto.Id</td>
                 <td>@Model.pacienteMayorcosto.Nombre @Model.pacienteMayorcosto.Apellido_1 @Model.pacienteMayorcosto.Apellido_2</td>
                 <td>$@Model.pacienteMayorcosto.Trabajo.Costo_Tratamiento</td>
