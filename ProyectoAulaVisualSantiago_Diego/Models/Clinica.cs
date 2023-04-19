@@ -338,8 +338,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
                 porcentaje = Math.Round(((pacientes_especificos / pacientes_totales) * 100.0), 2);
 
             }
-            catch(DivideByZeroException ex) {
-                string a = ex.Message;
+            catch(DivideByZeroException) {
                 porcentaje = 0;
             }
             return porcentaje;
@@ -347,17 +346,16 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         }
         private static double Calcular_porcentaje_costos(List<Paciente> pacientes, List<double> costos, double costo_total)
         {
-            if (pacientes.Count == 0)
+            try
             {
-                return 0;
-            }
-            else
-            {
-                double porcentaje = Math.Round((costos.Sum() / costo_total) * 100,2);
-                 
+                double porcentaje = Math.Round((costos.Sum() / costo_total) * 100, 2);
+
                 return porcentaje;
             }
-
+            catch (DivideByZeroException)
+            {
+                return 0;
+            }     
         }
   
         
