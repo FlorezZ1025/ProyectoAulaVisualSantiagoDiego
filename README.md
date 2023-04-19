@@ -1,2 +1,2 @@
 # ProyectoAulaVisualSantiago_Diego
-Este proyecto es con fines de practicar para la clase de Codigo Limpio, este programa es una clinica virtual.
+Esta es la segunda entrega de un proyecto de la materia codigo limpio, en esta entrega se agrega la programación visual, en la que el usuario podrá interactuar con una interfaz en la web, el código está construido siguiendo el patrón de diseño Modelo Vista Controlador (MVC)-
