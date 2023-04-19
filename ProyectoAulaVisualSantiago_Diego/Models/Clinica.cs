@@ -317,7 +317,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
 
             return total_pacientes_con_cancer;
         }
-        private static double Sumar_costos(List<Paciente> pacientes)
+        public static double Sumar_costos(List<Paciente> pacientes)
         {
             double total = 0;
             foreach (Paciente paciente in pacientes)

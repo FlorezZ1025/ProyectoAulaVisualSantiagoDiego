@@ -1,12 +1,16 @@
 
 
 using ProyectoAulaVisualSantiago_Diego.Models;
+using System.Net.Sockets;
 
 namespace ProyectoAulaVisualSantiago_DiegoTest
 {
     [TestClass]
     public class UnitTest1
     {
+        ProyectoAulaVisualSantiago_Diego.Models.Clinica target = new ProyectoAulaVisualSantiago_Diego.Models.Clinica();
+        
+        
         public Paciente crearPacientePrueba()
         {
             int id = 123456789;
@@ -16,7 +20,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             DateTime fecha_nacimiento = DateTime.Now;
             int tiempo_en_eps = 4;
             Fecha fechas = new Fecha(fecha_nacimiento, tiempo_en_eps);
-            Trabajo trabajo = new Trabajo("Contributivo", "Cotizante", 7500000);
+            Trabajo trabajo = new Trabajo("Contributivo", "Cotizante", 1000);
             Historial historial = new Historial("Sura", "Ataque al corazon", 0, "Covid");
 
 
@@ -25,6 +29,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             return paciente;
 
         }
+
         [TestMethod]
         public void guardarPacienteTest()
         {
@@ -108,7 +113,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
         }
 
         [TestMethod]
-        public void CambioCostoTratamiento()
+        public void CambioCostoTratamientoTest()
         {
             //Arrange
             ProyectoAulaVisualSantiago_Diego.Models.Clinica target = new ProyectoAulaVisualSantiago_Diego.Models.Clinica();
@@ -123,7 +128,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
         }
 
         [TestMethod]
-        public void CambiofEnfermedad_r()
+        public void CambiofEnfermedad_rTest()
         {
             //Arrange
             ProyectoAulaVisualSantiago_Diego.Models.Clinica target = new ProyectoAulaVisualSantiago_Diego.Models.Clinica();
@@ -159,5 +164,6 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             Assert.AreEqual(expected4, porcentajes[3]);
             Assert.AreEqual(expected5, porcentajes[4]);
         }
+
     }
 }   
