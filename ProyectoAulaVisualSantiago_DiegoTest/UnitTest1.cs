@@ -9,8 +9,8 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
     public class UnitTest1
     {
         ProyectoAulaVisualSantiago_Diego.Models.Clinica target = new ProyectoAulaVisualSantiago_Diego.Models.Clinica();
-        
-        
+
+
         public Paciente crearPacientePrueba()
         {
             int id = 123456789;
@@ -44,6 +44,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
 
             //Assert
             Assert.IsTrue(target.Pacientes.Count() > 0);
+            target.Pacientes.Clear();
         }
 
 
@@ -62,6 +63,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
 
             //Assert
             Assert.AreEqual(expected, actual);
+            target.Pacientes.Clear();
         }
 
         [TestMethod]
@@ -78,6 +80,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
 
             //Assert
             Assert.AreEqual(expected, actual);
+            target.Pacientes.Clear();
         }
 
         [TestMethod]
@@ -93,7 +96,24 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             target.CambioEps(paciente, "Sura");
 
             //Assert
-            Assert.AreEqual(paciente.Historial.Eps, expected);
+            Assert.AreEqual(expected, paciente.Historial.Eps);
+            target.Pacientes.Clear();
+        }
+
+        [TestMethod]
+        public void Sumar_costosTest()
+        {
+            //Arrange
+            ProyectoAulaVisualSantiago_Diego.Models.Clinica target = new ProyectoAulaVisualSantiago_Diego.Models.Clinica();
+            double expected= 1000;
+
+            //Add
+            Paciente paciente = crearPacientePrueba();
+            target.guardarPaciente(paciente);
+            double actual = Clinica.Sumar_costos(target.Pacientes);
+            
+            Assert.AreEqual(expected, actual);
+
         }
 
         [TestMethod]
@@ -109,7 +129,8 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             target.CambioHistoriaClinica(paciente, "Me duele el pecho");
 
             //Assert
-            Assert.AreEqual(paciente.Historial.Historia_clínica, expected);
+            Assert.AreEqual(expected, paciente.Historial.Historia_clínica);
+            target.Pacientes.Clear();
         }
 
         [TestMethod]
@@ -124,7 +145,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             target.CambioCostoTratamiento(paciente, 100);
 
             //Assert
-            Assert.AreEqual(paciente.Trabajo.Costo_Tratamiento, expected);
+            Assert.AreEqual(expected, paciente.Trabajo.Costo_Tratamiento);
         }
 
         [TestMethod]
@@ -139,7 +160,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             target.CambioEnfermedad_r(paciente, "Cancer");
 
             //Assert
-            Assert.AreEqual(paciente.Historial.Enfermedad_relevante, expected);
+            Assert.AreEqual(expected, paciente.Historial.Enfermedad_relevante);
         }
 
         [TestMethod]
@@ -155,6 +176,7 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
 
             //Add
             Paciente paciente = crearPacientePrueba();
+            target.guardarPaciente(paciente);
             List<double> porcentajes = Clinica.Porcentaje_costos(target.Pacientes);
             
             //Assert
@@ -163,6 +185,35 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             Assert.AreEqual(expected3, porcentajes[2]);
             Assert.AreEqual(expected4, porcentajes[3]);
             Assert.AreEqual(expected5, porcentajes[4]);
+
+            target.Pacientes.Clear();
+        }
+
+        [TestMethod]
+        public void Calcular_costos_por_epsTest()
+        {
+            //Arrange
+            ProyectoAulaVisualSantiago_Diego.Models.Clinica target = new ProyectoAulaVisualSantiago_Diego.Models.Clinica();
+            double expected1 = 1000;
+            double expected2 = 0;
+            double expected3 = 0;
+            double expected4 = 0;
+            double expected5 = 0;
+
+            //Add
+            Paciente paciente = crearPacientePrueba();
+            target.guardarPaciente(paciente);
+            List<double> costos = Clinica.Calcular_costos_por_eps(target.Pacientes);
+
+            //Assert
+            Assert.AreEqual(expected1, costos[0]);
+            Assert.AreEqual(expected2, costos[1]);
+            Assert.AreEqual(expected3, costos[2]);
+            Assert.AreEqual(expected4, costos[3]);
+            Assert.AreEqual(expected5, costos[4]);
+
+            target.Pacientes.Clear();
+
         }
 
     }
