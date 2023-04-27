@@ -47,14 +47,14 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             
             if(pacientes_mayorCosto.Count == 0)
             {
-                Fecha f     = new Fecha(DateTime.Now,3);
-                Trabajo t   = new Trabajo("", "", 0);
-                Historial h = new Historial("", "", 0, "");
-                Paciente paciente_nulo = new Paciente(0,"No","hay","",f,h,t);
-                Estadistica stats      = new Estadistica(porcentaje_costos, totalCostosEps, pacientesNoEnfermos,paciente_nulo, porcentajes_Edad, porcentajesRegimen, totalPacientesCancer, 
-                    porcentajesAfiliacion);
+                //Fecha f     = new Fecha(DateTime.Now,3);
+                //Trabajo t   = new Trabajo("", "", 0);
+                //Historial h = new Historial("", "", 0, "");
+                //Paciente paciente_nulo = new Paciente(0,"No","hay","",f,h,t);
+                //Estadistica stats      = new Estadistica(porcentaje_costos, totalCostosEps, pacientesNoEnfermos,paciente_nulo, porcentajes_Edad, porcentajesRegimen, totalPacientesCancer, 
+                //    porcentajesAfiliacion);
 
-                return View(stats);
+                return RedirectToAction("MostrarDatosVacios");
             }
 
 
@@ -200,6 +200,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             return View(paciente);
 
         }
+        
         public ActionResult MostrarCambioEnfermedad()
         {
             string nuevoId = (string)TempData["nuevoId"];
@@ -211,6 +212,11 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             miclinica.CambioEnfermedad_r(paciente, enfermedad_relevante);
             return View(paciente);
         }
-    }
 
+        public ActionResult MostrarDatosVacios()
+        {
+            return View();
+        }
+    }
+    
 }

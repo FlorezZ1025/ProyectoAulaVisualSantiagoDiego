@@ -211,6 +211,7 @@
     <Content Include="Views\Home\IngresarInformacion.cshtml" />
     <Content Include="Views\Shared\_NotificationPanel.cshtml" />
     <Content Include="Views\Home\MostrarCambioEnfermedad.cshtml" />
+    <Content Include="Views\Home\MostrarDatosVacios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
