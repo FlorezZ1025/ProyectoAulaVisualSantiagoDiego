@@ -23,13 +23,13 @@
                     <td><label> @Model.Nombre</label></td>
                 </tr>
                 <tr>
-                    <td><label>Apeliidos                          </label></td>
+                    <td><label>Apellidos                          </label></td>
                     <td><label> @Model.Apellido_1 @Model.Apellido_2</label></td>
 
                 </tr>
                 <tr>
                     <td><label>Fecha de nacimiento                   </label></td>
-                    <td><label> @Model.Fechas.Fecha_de_nacimiento.ToShortDateString()</label></td>
+                    <td><label> @Model.Fecha_de_nacimiento.ToShortDateString()</label></td>
                 </tr>
                 <tr>
                     <td><label>EPS                 </label></td>
@@ -38,7 +38,7 @@
 
                 <tr>
                     <td><label>Meses en la EPS            </label></td>
-                    <td><label> @Model.Fechas.Tiempo_en_eps</label></td>
+                    <td><label> @Model.Tiempo_en_eps</label></td>
                 </tr>
                 <tr>
                     <td><label>Historia clínica                 </label></td>

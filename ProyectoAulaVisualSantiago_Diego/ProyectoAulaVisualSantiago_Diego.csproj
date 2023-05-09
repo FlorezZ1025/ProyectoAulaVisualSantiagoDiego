@@ -122,15 +122,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SweetController.cs" />
+    <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\TiempoInvalidoException.cs" />
-    <Compile Include="Models\UsuarioNoEncontradoException.cs" />
+    <Compile Include="Models\miclinicaDTO.cs" />
+    <Compile Include="Models\Exceptions.cs" />
     <Compile Include="Models\Enum.cs" />
     <Compile Include="Models\Estadistica.cs" />
     <Compile Include="Models\Clinica.cs" />
-    <Compile Include="Models\Fecha.cs" />
     <Compile Include="Models\Historial.cs" />
     <Compile Include="Models\Paciente.cs" />
     <Compile Include="Models\Trabajo.cs" />
@@ -212,6 +212,7 @@
     <Content Include="Views\Shared\_NotificationPanel.cshtml" />
     <Content Include="Views\Home\MostrarCambioEnfermedad.cshtml" />
     <Content Include="Views\Home\MostrarDatosVacios.cshtml" />
+    <Content Include="Views\Home\Inicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

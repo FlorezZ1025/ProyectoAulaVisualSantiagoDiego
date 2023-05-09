@@ -17,7 +17,10 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
     {
 
         Clinica miclinica = new Clinica();
+        miclinicaDTO miclinicaDTO = new miclinicaDTO();
 
+        
+        
         public ActionResult ActualizarInformacion()
         {
             return View();
@@ -35,30 +38,21 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
 
         public ActionResult MostrarEstadisticas()
         {
-           
-            List<double> porcentaje_costos      = Clinica.Porcentaje_costos(miclinica.Pacientes);
-            List<double> totalCostosEps         = Clinica.Calcular_costos_por_eps(miclinica.Pacientes);
-            List<Paciente> pacientes_mayorCosto = Clinica.Paciente_mayor_costo_tratamiento(miclinica.Pacientes);
-            double pacientesNoEnfermos          = Clinica.Porcentaje_sin_enfermedades(miclinica.Pacientes);
-            List<double> porcentajes_Edad       = Clinica.Rango_de_edad(miclinica.Pacientes);
-            List<double> porcentajesRegimen     = Clinica.Porcentajes_regimen(miclinica.Pacientes);
-            int totalPacientesCancer            = Clinica.Total_pacientes_con_cancer(miclinica.Pacientes);
-            List<double> porcentajesAfiliacion  = Clinica.CalcularPorcentajesAfiliacion(miclinica.Pacientes);
+            List<Paciente> listadePacientes = miclinicaDTO.ObtnerInformacionPacientesBD();
+            miclinica.Pacientes = listadePacientes;
+            List<double> porcentaje_costos      = Clinica.Porcentaje_costos                 (listadePacientes);
+            List<double> totalCostosEps         = Clinica.Calcular_costos_por_eps           (listadePacientes);
+            List<Paciente> pacientes_mayorCosto = Clinica.Paciente_mayor_costo_tratamiento  (listadePacientes);
+            double pacientesNoEnfermos          = Clinica.Porcentaje_sin_enfermedades       (listadePacientes);
+            List<double> porcentajes_Edad       = Clinica.Rango_de_edad                     (listadePacientes);
+            List<double> porcentajesRegimen     = Clinica.Porcentajes_regimen               (listadePacientes);
+            int totalPacientesCancer            = Clinica.Total_pacientes_con_cancer        (listadePacientes);
+            List<double> porcentajesAfiliacion  = Clinica.CalcularPorcentajesAfiliacion     (listadePacientes);
             
             if(pacientes_mayorCosto.Count == 0)
             {
-                //Fecha f     = new Fecha(DateTime.Now,3);
-                //Trabajo t   = new Trabajo("", "", 0);
-                //Historial h = new Historial("", "", 0, "");
-                //Paciente paciente_nulo = new Paciente(0,"No","hay","",f,h,t);
-                //Estadistica stats      = new Estadistica(porcentaje_costos, totalCostosEps, pacientesNoEnfermos,paciente_nulo, porcentajes_Edad, porcentajesRegimen, totalPacientesCancer, 
-                //    porcentajesAfiliacion);
-
                 return RedirectToAction("MostrarDatosVacios");
             }
-
-
-            
             Estadistica estadisticas_ = new Estadistica(porcentaje_costos, totalCostosEps, pacientesNoEnfermos, pacientes_mayorCosto[0], porcentajes_Edad, porcentajesRegimen,
                 totalPacientesCancer, porcentajesAfiliacion);
 
@@ -103,26 +97,30 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
 
 
         public ActionResult MostrarPacienteRegistrado()
+
         {
+            miclinica.Pacientes = miclinicaDTO.ObtnerInformacionPacientesBD();
+
             int id = Convert.ToInt32((Request.Form["id"]));
             string nombre = Request.Form["nombre"].ToString();
             string apellido_1 = Request.Form["apellido_1"].ToString();
             string apellido_2 = Request.Form["apellido_2"].ToString();
-            DateTime fh_nacimineto = DateTime.Parse(Request.Form["fhNacimiento"]);
+            DateTime fh_nacimiento = DateTime.Parse(Request.Form["fhNacimiento"]);
             string tipo_regimen = Request.Form["regimen"].ToString();
             string tipo_eps = Request.Form["Eps"].ToString();
             string tipo_afiliacion = Request.Form["afiliacion"].ToString();
             string historia_clinica = Request.Form["historia_clinica"].ToString();
-            int tiempo_eps = Convert.ToInt32(Request.Form["tiempo_en_eps"]);
+            DateTime tiempo_eps = DateTime.Parse(Request.Form["ingresoeps"]);
             int cantidad_enfermedades = Convert.ToInt32(Request.Form["cantidad_Enfermedades"]);
             string enfermedad_relevante = Request.Form["Enfermedad_relevante"].ToString();
             int costo_tratamiento = Convert.ToInt32(Request.Form["costo_Tratamiento"]);
-
-            Fecha fechas = new Fecha(fh_nacimineto, tiempo_eps);
+            
+            
             Historial historial = new Historial(tipo_eps, historia_clinica, cantidad_enfermedades, enfermedad_relevante);
             Trabajo trabajo = new Trabajo(tipo_regimen, tipo_afiliacion, costo_tratamiento);
 
-            Paciente paciente = new Paciente(id, nombre, apellido_1, apellido_2, fechas, historial, trabajo);
+            Paciente paciente = new Paciente(id, nombre, apellido_1, apellido_2, fh_nacimiento,tiempo_eps, historial, trabajo);
+            miclinicaDTO.guardarPacienteBD(paciente);
             miclinica.guardarPaciente(paciente);
     
 
@@ -155,18 +153,31 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
         {
             try
             {
+                
                 string nuevoId = (string)TempData["nuevoId"];
                 TempData.Keep("nuevoId");
                 int id = Convert.ToInt32(nuevoId);
                 Paciente paciente = miclinica.EncontrarPaciente(id);
-                if (paciente.Fechas.Tiempo_en_eps <= 3)
+                DateTime fecha_ahora = DateTime.Now;
+                DateTime fecha_ingreso = paciente.Tiempo_en_eps;
+                TimeSpan intervalo = fecha_ahora - fecha_ingreso;
+
+                
+
+                int mesesTranscurridos = (int)intervalo.TotalDays / 30;
+                if (mesesTranscurridos <= 3)
                 {
                     throw new TiempoInvalidoException();
                 }
                 string n_eps = Request.Form["eps"].ToString();
                 miclinica.CambioEps(paciente, n_eps);
+                miclinicaDTO.cambiarEPSBD(id, n_eps);
                 return View(paciente);
             }
+
+
+
+
             catch (TiempoInvalidoException ex)
             {
                 Alert(ex.Message, NotificationType.warning);
@@ -184,6 +195,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             string nueva_historia = Request.Form["historia"].ToString();
 
             miclinica.CambioHistoriaClinica(paciente, nueva_historia);
+            miclinicaDTO.cambiarHistoriaBD(id, nueva_historia);
             return View(paciente);
         }
 
@@ -197,6 +209,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             int nuevo_costo = Convert.ToInt32(Request.Form["cambiarcosto"]);
 
             miclinica.CambioCostoTratamiento(paciente, nuevo_costo);
+            miclinicaDTO.cambiarCostoBD(id, nuevo_costo);
             return View(paciente);
 
         }
@@ -210,11 +223,19 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             string enfermedad_relevante = Convert.ToString(Request.Form["e_relevante"]);
 
             miclinica.CambioEnfermedad_r(paciente, enfermedad_relevante);
+            miclinicaDTO.cambiarEnfermedadBD(id, enfermedad_relevante);
             return View(paciente);
         }
 
         public ActionResult MostrarDatosVacios()
         {
+            return View();
+        }
+
+        public ActionResult Inicio()
+        {
+            List<Paciente> listadePacientes = miclinicaDTO.ObtnerInformacionPacientesBD();
+            miclinica.Pacientes = listadePacientes;
             return View();
         }
     }

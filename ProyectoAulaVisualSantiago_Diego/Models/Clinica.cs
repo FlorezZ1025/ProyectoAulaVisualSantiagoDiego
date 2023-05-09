@@ -7,8 +7,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
 {
     public class Clinica
     {
-        public static List<Paciente> pacientes = new List<Paciente>();
-
+        public static List<Paciente> pacientes =  new List<Paciente>();
 
         public List<Paciente> Pacientes { get => pacientes; set => pacientes = value; }
 
@@ -33,7 +32,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         public void CambioEps(Paciente paciente, string eps)
         {
             paciente.Historial.Eps = eps;
-            paciente.Fechas.Tiempo_en_eps = 0;
+            paciente.Tiempo_en_eps = DateTime.Now;
         }
 
         public void CambioHistoriaClinica(Paciente paciente, string historia)
@@ -171,7 +170,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
 
         public static double Porcentaje_niños(List<Paciente> Pacientes, DateTime fecha_actual)
         {
-            var pacientes_adolescentes = Pacientes.Where(x => (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) < 12).ToList();
+            var pacientes_adolescentes = Pacientes.Where(x => (fecha_actual.Year - x.Fecha_de_nacimiento.Year) < 12).ToList();
 
             double porcentaje_pacientes_adolescentes = Calcular_porcentaje(Pacientes, pacientes_adolescentes);
 
@@ -181,8 +180,8 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
 
             public static double Porcentaje_adolescentes(List<Paciente> Pacientes, DateTime fecha_actual)
         {
-            var pacientes_adolescentes = Pacientes.Where(x => (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) >= 12 &&
-            (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) < 18).ToList();
+            var pacientes_adolescentes = Pacientes.Where(x => (fecha_actual.Year - x.Fecha_de_nacimiento.Year) >= 12 &&
+            (fecha_actual.Year - x.Fecha_de_nacimiento.Year) < 18).ToList();
 
 
 
@@ -194,8 +193,8 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         public static double Porcentaje_jovenes(List<Paciente> Pacientes, DateTime fecha_actual)
         {
 
-            var pacientes_jovenes = Pacientes.Where(x => (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) >= 18 &&
-            (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) < 30).ToList();
+            var pacientes_jovenes = Pacientes.Where(x => (fecha_actual.Year - x.Fecha_de_nacimiento.Year) >= 18 &&
+            (fecha_actual.Year - x.Fecha_de_nacimiento.Year) < 30).ToList();
 
             double porcentaje_pacientes_jovenes = Calcular_porcentaje(Pacientes, pacientes_jovenes);
 
@@ -205,7 +204,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         public static double Porcentaje_adultos(List<Paciente> Pacientes, DateTime fecha_actual)
         {
 
-            var pacientes_adultos = Pacientes.Where(x => (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) >= 30 && (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) < 55).ToList();
+            var pacientes_adultos = Pacientes.Where(x => (fecha_actual.Year - x.Fecha_de_nacimiento.Year) >= 30 && (fecha_actual.Year - x.Fecha_de_nacimiento.Year) < 55).ToList();
 
             double porcentaje_pacientes_adulto = Calcular_porcentaje(Pacientes, pacientes_adultos);
 
@@ -215,7 +214,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         public static double Porcentaje_adultos_mayores(List<Paciente> Pacientes, DateTime fecha_actual)
         {
 
-            var pacientes_adultos_mayores = Pacientes.Where(x => (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) >= 55 && (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) < 75).ToList();
+            var pacientes_adultos_mayores = Pacientes.Where(x => (fecha_actual.Year - x.Fecha_de_nacimiento.Year) >= 55 && (fecha_actual.Year - x.Fecha_de_nacimiento.Year) < 75).ToList();
 
             double porcentaje_pacientes_adultos_mayores = Calcular_porcentaje(Pacientes, pacientes_adultos_mayores);
 
@@ -225,7 +224,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
         public static double Porcentaje_ancianos(List<Paciente> Pacientes, DateTime fecha_actual)
         {
 
-            var pacientes_ancianos = Pacientes.Where(x => (fecha_actual.Year - x.Fechas.Fecha_de_nacimiento.Year) >= 75).ToList();
+            var pacientes_ancianos = Pacientes.Where(x => (fecha_actual.Year - x.Fecha_de_nacimiento.Year) >= 75).ToList();
 
             double porcentaje_pacientes_ancianos = Calcular_porcentaje(Pacientes, pacientes_ancianos);
 
