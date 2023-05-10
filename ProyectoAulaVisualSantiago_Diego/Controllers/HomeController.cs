@@ -84,16 +84,6 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             }
         }
 
-        public ActionResult MostrarCambioRegimen()
-        {
-            string nuevoId = (string)TempData["nuevoId"];
-            TempData.Keep("nuevoId");
-            int id = Convert.ToInt32(nuevoId);
-            Paciente paciente = miclinica.EncontrarPaciente(id);
-            string n_regimen = Request.Form["regimen"].ToString();
-            miclinica.CambioRegimen(paciente, n_regimen);
-            return View(paciente);
-        }
 
 
         public ActionResult MostrarPacienteRegistrado()
@@ -148,6 +138,26 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             }
         }
 
+        public ActionResult MostrarCambioAfiliacion()
+        {
+            string nuevoId = (string)TempData["nuevoId"];
+            TempData.Keep("nuevoId");
+            int id = Convert.ToInt32(nuevoId);
+            Paciente paciente = miclinica.EncontrarPaciente(id);
+            return View();
+        }
+
+        public ActionResult MostrarCambioRegimen()
+        {
+            string nuevoId = (string)TempData["nuevoId"];
+            TempData.Keep("nuevoId");
+            int id = Convert.ToInt32(nuevoId);
+            Paciente paciente = miclinica.EncontrarPaciente(id);
+            string n_regimen = Request.Form["regimen"].ToString();
+            miclinica.CambioRegimen(paciente, n_regimen);
+            miclinicaDTO.cambiarRegimenBD(id, n_regimen);
+            return View(paciente);
+        }
 
         public ActionResult MostrarCambioEps()
         {
@@ -238,6 +248,12 @@ namespace ProyectoAulaVisualSantiago_Diego.Controllers
             miclinica.Pacientes = listadePacientes;
             return View();
         }
-    }
     
+        public ActionResult MostrarPacientesTablas()
+        {
+            List<Paciente> listadePacientes = miclinicaDTO.ObtnerInformacionPacientesBD();
+            miclinica.Pacientes = listadePacientes;
+            return View(miclinica);
+        }
+    }
 }

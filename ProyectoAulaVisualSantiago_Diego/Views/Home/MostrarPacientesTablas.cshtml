@@ -1,0 +1,78 @@
+﻿@model ProyectoAulaVisualSantiago_Diego.Models.Clinica
+
+@{
+    ViewBag.Title = "Tabla de pacientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+            margin: 40px 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Pacientes</h1>
+        <table id="pacientesTable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Identificacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var paciente in Model.Pacientes)
+                {
+                    <tr>
+                        <td>@paciente.Nombre</td>
+                        <td>@paciente.Apellido_1</td>
+                        <td>@paciente.Apellido_2</td>
+                        <td>@paciente.Id</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+

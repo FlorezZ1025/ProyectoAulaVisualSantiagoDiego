@@ -18,14 +18,10 @@ namespace ProyectoAulaVisualSantiago_DiegoTest
             string apellido_1 = "Estelio";
             string apeliido_2 = "Gutierrez";
             DateTime fecha_nacimiento = DateTime.Now;
-            int tiempo_en_eps = 4;
-            Fecha fechas = new Fecha(fecha_nacimiento, tiempo_en_eps);
+            DateTime tiempo_en_eps = DateTime.Parse("04/02/2004");
             Trabajo trabajo = new Trabajo("Contributivo", "Cotizante", 1000);
             Historial historial = new Historial("Sura", "Ataque al corazon", 0, "Covid");
-
-
-
-            Paciente paciente = new Paciente(id, nombre, apellido_1, apeliido_2, fechas, historial, trabajo);
+            Paciente paciente = new Paciente(id, nombre, apellido_1, apeliido_2, fecha_nacimiento,tiempo_en_eps, historial, trabajo);
             return paciente;
 
         }

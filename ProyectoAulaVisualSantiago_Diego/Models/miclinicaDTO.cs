@@ -42,7 +42,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
                             command2.Parameters.AddWithValue("@tipoRegimen", paciente.Trabajo.Tipo_de_regimen);
                             command2.Parameters.AddWithValue("@fechaIngresoEPS", paciente.Tiempo_en_eps);
                             command2.Parameters.AddWithValue("@costoTratamiento", paciente.Trabajo.Costo_Tratamiento);
-                            command2.Parameters.AddWithValue("@tipoAfiliacion", paciente.Trabajo.Costo_Tratamiento);
+                            command2.Parameters.AddWithValue("@tipoAfiliacion", paciente.Trabajo.Afiliacion);
 
 
                             // Obtiene el ID recién insertado
@@ -134,6 +134,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
             return lista;
         }
 
+
         public void cambiarEPSBD(int id, string n_eps)
         {
             using (SqlConnection sqlconnection = new SqlConnection(connection.conexion))
@@ -161,6 +162,35 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
                 sqlconnection.Close();
             }
         }
+        
+        public void cambiarRegimenBD(int id, string nuevo_regimen)
+        {
+            using (SqlConnection sqlconnection = new SqlConnection(connection.conexion))
+            {
+                sqlconnection.Open();
+                SqlCommand command = new SqlCommand("SELECT id_Paciente FROM TbPacientes WHERE identificacion = @identificacion", sqlconnection);
+                command.Parameters.AddWithValue("@identificacion", id);
+
+                int idPacienteBD = Convert.ToInt32(command.ExecuteScalar());
+
+                String query = "UPDATE TbTrabajo SET tipoRegimen = @tipoRegimen WHERE id_Trabajo = @id_Paciente";
+
+                var parametros = new List<SqlParameter>{
+                    new SqlParameter("@id_Paciente",idPacienteBD),
+                    new SqlParameter("@tipoRegimen",nuevo_regimen)
+                
+                };
+
+                SqlCommand updateCommand = new SqlCommand(query, sqlconnection);
+                updateCommand.Parameters.AddRange(parametros.ToArray());
+
+
+                updateCommand.ExecuteNonQuery();
+
+                sqlconnection.Close();
+
+            }
+        }
 
         public void cambiarEnfermedadBD(int id, string enfermedad_relevante)
         {
@@ -172,11 +202,7 @@ namespace ProyectoAulaVisualSantiago_Diego.Models
 
                 int idPacienteBD = Convert.ToInt32(command.ExecuteScalar());
 
-                String query = "UPDATE TbHisto" +
-                    "" +
-                    "" +
-                    "" +
-                    "rial SET enfermedadRelevante = @enfermedadRelevante WHERE id_Paciente = @id_Paciente";
+                String query = "UPDATE TbHistorial SET enfermedadRelevante = @enfermedadRelevante WHERE id_Paciente = @id_Paciente";
 
                 var parametros = new List<SqlParameter>
                 {
